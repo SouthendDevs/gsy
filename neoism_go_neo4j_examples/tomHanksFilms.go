@@ -26,32 +26,32 @@ func queryTomHanks() {
    RETURN movie
   `
 
-	// query results
-	res := []struct {
-		Movie neoism.Node
-	}{}
+  // query results
+  res := []struct {
+    Movie neoism.Node
+  }{}
 
-	// construct query
-	cq := neoism.CypherQuery{
-		Statement:  stmt,
-		Result:     &res,
-	}
-	// execute query
-	err := db.Cypher(&cq)
-	if(err != nil){ panic(err) } //I would prefer exceptions but Go lacks these
+  // construct query
+  cq := neoism.CypherQuery{
+    Statement:  stmt,
+    Result:     &res,
+  }
+  // execute query
+  err := db.Cypher(&cq)
+  if(err != nil){ panic(err) } //I would prefer exceptions but Go lacks these
 
-	fmt.Printf("query result:\n")
-	for i, _ := range res {
-		n := res[i].Movie // Only one row of data returned
-		fmt.Printf("  Node %d: %+v\n", i, n.Data )
-	}
+  fmt.Printf("query result:\n")
+  for i, _ := range res {
+    n := res[i].Movie // Only one row of data returned
+    fmt.Printf("  Node %d: %+v\n", i, n.Data )
+  }
   
 }
 
 /////////////////////////////////////////
 
 func main() {
-	fmt.Println("Hello")
+  fmt.Println("Hello")
   initdb()
   fmt.Println("Querying films Tom Hanks acted in:")
   queryTomHanks()

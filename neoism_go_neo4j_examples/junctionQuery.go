@@ -26,32 +26,32 @@ func queryJunction(junctNum int) {
    RETURN junction
   `
 
-	// query results
-	res := []struct {
-		Junction neoism.Node
-	}{}
+  // query results
+  res := []struct {
+    Junction neoism.Node
+  }{}
 
-	// construct query
-	cq := neoism.CypherQuery{
-		Statement:  stmt,
-		Result:     &res,
-	}
-	// execute query
-	err := db.Cypher(&cq)
-	if(err != nil){ panic(err) } //I would prefer exceptions but Go lacks these
+  // construct query
+  cq := neoism.CypherQuery{
+    Statement:  stmt,
+    Result:     &res,
+  }
+  // execute query
+  err := db.Cypher(&cq)
+  if(err != nil){ panic(err) } //I would prefer exceptions but Go lacks these
 
-	fmt.Printf("query result:\n")
-	for i, _ := range res {
-		n := res[i].Junction // Only one row of data returned
-		fmt.Printf("  Node %d: %+v\n", i, n.Data )
-	}
+  fmt.Printf("query result:\n")
+  for i, _ := range res {
+    n := res[i].Junction // Only one row of data returned
+    fmt.Printf("  Node %d: %+v\n", i, n.Data )
+  }
   
 }
 
 /////////////////////////////////////////
 
 func main() {
-	fmt.Println("Hello, connecting to gsy database...")
+  fmt.Println("Hello, connecting to gsy database...")
   initdb()
   fmt.Print("Which junction number do you want to query (1-9): ")
   junctNum := cliInputNum()

@@ -1,20 +1,17 @@
-//REST URL: http://carsimulator.sb05.stations.graphenedb.com:24789/db/data/
-//VIEW URL: http://carsimulator.sb05.stations.graphenedb.com:24789/browser/
-//USERNAME: car_simulator
-//PASSWORD: ABrUgUpyCjgBJDCWeWQc
-
 package main
 
 import "fmt"
 import "github.com/jmcvetta/neoism"
 import "strconv"
 
+const PASSWORD = "password" //Put the password in here, Mike posted it in the slack
+
 var db *neoism.Database //The * means this is a pointer to a Database object
 
 func initdb() {
   //neoism.Connect("http://username:password@server:port")
   var err error
-  db, err = neoism.Connect("http://car_simulator:ABrUgUpyCjgBJDCWeWQc@carsimulator.sb05.stations.graphenedb.com:24789")
+  db, err = neoism.Connect("http://car_simulator:" + PASSWORD + "@carsimulator.sb05.stations.graphenedb.com:24789")
   //If error connecting to database, halt execution and display error message
   if(err != nil) { panic(err) }
   if(db == nil) { panic("Database object is null") }

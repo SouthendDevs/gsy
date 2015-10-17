@@ -1,7 +1,9 @@
+Install neoism first - see the GSY GitHub wiki page: https://github.com/SouthendDevs/gsy/wiki/Neo4j-Go:-Neoism-library
+
 Compile and run go programs with go run: 
 
 $ go run program.go
 
 tomHanksFilms.go: Requires the films and actors database running on localhost:7474. You will have to edit the file with your neo4j password and comment out the panic line that tells you to input your password.
 
-junctionQuery.go: This connects to our remote server, you will have to get the password from the Slack and edit the PASSWORD const. With that done it should just work providing you have neoism installed into your gopath (see my neoism wiki page on the GSY github).
+junctionQuery.go: This connects to our remote server, you will have to get the password from the Slack and edit the PASSWORD const. With that done it should just work.

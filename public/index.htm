@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+  <head>
+    <style>
+      #car_1 {
+        border: 1px solid black;
+        width: 100px;
+        height: 100px;
+        position: absolute;
+        left: 0px;
+        top: 100px;
+      }
+    </style>
+
+    <script src="https://js.pusher.com/3.0/pusher.min.js"></script>
+
+    <script>
+      // Enable pusher logging - don't include this in production
+      Pusher.log = function(message) {
+        if (window.console && window.console.log) {
+          window.console.log(message);
+        }
+      };
+
+      var pusher = new Pusher('93bbc2f887da44fb6b64', {
+        encrypted: true
+      });
+      var channel = pusher.subscribe('test_channel');
+      channel.bind('my_event', function(data) {
+        console.log(data.position);
+        var chrId = document.getElementById('car_1');
+        chrId.style.left = (data.position * 2) + "px";
+      });
+      </script>
+
+      <script>
+    </script>
+  </head>
+  <body>
+    <div id="car_1"></div>
+  </body>
+</html>

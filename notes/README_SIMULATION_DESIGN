@@ -1,0 +1,80 @@
+General design of the data structure: (we could make it into a UML diagram with UMLet if people want)
+
+Car struct:
+  currentRoad            (pointer to a Road)
+  nextJunction           (pointer to a Junction)
+  distanceToNextJunction (float32)
+  speed                  (float32)
+  destinationJunction    (pointer to a Junction)
+}
+
+Junction struct:
+  neoId         (int)
+  junctionNum   (int)
+  roadsOut      (a map - hashmap, with ints for keys and Road pointers for values. We just use it as a dynamic size array)
+
+Road struct:
+  neoId        (int)
+  length       (float32)
+  speed        (float32)
+  nextJunction (pointer to a Junction)
+  
+TODO: the Roads and/or Junctions should probably also keep a list of all Cars driving on them
+
+-----------------------------------------------
+Code overview:
+
+updateCar:
+  if car.distanceToNextJunction is 0: 
+    if car.nextJunction == car.destinationJunction: the car has reached the destination
+    else: pick a new road coming out of the junction
+      select an exit road coming out of car.nextJunction: car.currentRoad = pick one from car.nextJunction.roadsOut[]
+      then update the car's fields with information from the new road
+  if car.distanceToNextJunction > 0: drive along the current road by decreasing car.distanceToNextJunction
+
+function update:
+  for every car: updateCar
+  for every car: print car
+
+main function: (start execution here)
+  initialise roads and junctions
+  connect roads and junctions together
+  loop:
+    update()
+
+-----------------------------------------------
+
+Notes on Go code:
+
+----Pointers:----
+Pointer types are denoted with *Type. Go always passes by value. If you have a list of roads and want to refer to one of them with another variable, something like
+
+  var nextRoad Road
+  nextRoad = roads[5]
+
+roads should be a list of Road pointers(recommended), so this would be a compiler error. If roads is a list of road objects, then it would work, but nextRoad will become a copy the road object - probably not what you wanted. In most modern languages, Ruby, Python, Java etc, object types are passed by reference(pointer) by default, so you get a pointer to the same actual instance just by using the = operator. In C, C++ and Go you must use pointer types and pointer syntax:
+
+  //if roads is a list of Road pointers (recommended):
+  var nextRoad *Road      //pointer type with the * in front
+  nextRoad = roads[5]     //roads should already be a list of Road pointers, so no need for & operator to get the address-of(pointer-to)
+  
+  //if roads is a list of Road objects:
+  var nextRoad *Road
+  nextRoad = &roads[5]    //&x gets the memory address-of (pointer to) x.
+
+You can also use type inference instead to avoid having to explicitly declaring the var and type:
+
+  //if roads is a list of Road pointers (recommended)
+  nextRoad := roads[5]    //notice that all pointer syntax is hidden!
+
+Unlike in C/C++, you don't have to "dereference" a pointer to use what it points to. The . operator will do that:
+
+  fmt.Println(nextRoad.length) //works just fine
+  
+Also unlike C/C++, Go has a garbage collector that watches when objects get orphaned and deletes them, so you shouldn't have to worry about destroying (deallocating) stuff.
+
+----Other:----
+Go has structs, not classes. Structs are compound types (similar to classes) but without methods, for some reason. Should probably read up on how OOP is supposed to work in Go. But this seems to be the way to do it.
+
+For lists, hashmaps seem an easy way to do this. Hashmaps are otherwise known as a dictionary(Python) or associative array(PHP arrays/etc).
+A map type is map[keytype]valuetype, so map[int]string if you are mapping ints to strings. In our case we have map[int]*Road. The * indicates a pointer type.

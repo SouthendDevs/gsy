@@ -22,9 +22,10 @@ func demo1() {
 
 func demo2() {
   var x *User //use pointer types everywhere - recommended
-  x = &User{"Andy"} //we declare it and then get a pointer to it (get the memory address-of x with &x)
-  //the = operator now copies the POINTER - x and y now both point(refer) to the same object, as in Ruby/Java/Python etc
+  x = &User{"Andy"} //we construct a User then get a pointer to it (get the memory address-of x with &x)
+  //the = operator now copies the POINTER - x and y are now both pointers that point(refer) to the same object, like objects in Ruby/Java/Python etc by default
   y := x
+  //the pointer itself doesn't have a name field - Go automatically dereferences it to the object we want - we can always use .
   y.name = "Dan"
   fmt.Println("demo2:",x,y) //x and y both point to Dan
 }
@@ -63,10 +64,10 @@ func demo4() {
 ////////////////
 
 func demo5func(user *User) {
-  //this is still pass by value - the value(memory address) of the pointer(reference) has been passed 
-  //which still refers to the original object, not a copy
+  //this is still pass by value - the value(memory address) of the pointer(reference) has been passed in
+  //which still refers to the original object, not a copy of the object itself
   fmt.Println("inside demo5func(x):", user.name)
-  //we edit the original object
+  //we edit the original object - Go automatically deferences it with .
   user.name = "John"
   fmt.Println("inside demo5func(x):", user.name)
 }
@@ -74,9 +75,9 @@ func demo5func(user *User) {
 func demo5() {
   fmt.Println("")
   var x *User //x now points to a User, it is not a User itself
-  x = &User{"Andy"} //we declare it and then get a pointer to it (get the memory address-of x with &x)
+  x = &User{"Andy"} //we construct it and then get a pointer to it (get the memory address-of x with &x)
   fmt.Println("before demo5func(x):", x.name)
-  //the User pointer is COPIED into the function - so the function can access the original object
+  //the User POINTER is copied into the function - so the function can access the original object
   demo5func(x)
   //the original User is now modified, as you would expect
   fmt.Println("after demo5func(x):", x.name)

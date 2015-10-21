@@ -1,6 +1,7 @@
 package main
 
 import "fmt"
+import "time"
 
 var allCars map[int]*Car
 
@@ -14,16 +15,40 @@ type Car struct {
 
 func updateCar(car *Car, id int) {
   if(car.distanceToNextJunction <= 0) {
-    if(car.nextJunction == car.destinationJunction) {
+    if(car.nextJunction == nil && car.currentRoad == nil) {
+      //this car is not in the simulation. TODO: remove from allCars
+      return
+    } else if(car.nextJunction == car.destinationJunction) {
       fmt.Print("Car ",id," has reached its destination")
+      //Blank car's fields to show it cannot move anymore
+      car.currentRoad = nil
+      car.nextJunction = nil
     } else {
+      //Car picks route here:
       car.currentRoad = car.nextJunction.roadsOut[0]
+      
+      //Update car's fields with selected exit road from junction
       car.distanceToNextJunction = car.currentRoad.length
       car.nextJunction = car.currentRoad.nextJunction
       car.speed = car.currentRoad.speed
     }
   } else {
+    //move along the road
     car.distanceToNextJunction -= car.speed
+  }
+}
+
+func printCar(car *Car, id int) {
+  if(car.nextJunction == nil && car.currentRoad == nil) {
+    //this car no longer exists in the simulation. TODO: remove from allCars
+    return
+  } else {
+    fmt.Print("Car ",id,": on road ")
+    if car.currentRoad == nil { fmt.Print("none"); 
+    } else { fmt.Print("id",car.currentRoad.neoId); } //else must have a } before it on the same line
+    
+    fmt.Print(", nextJunct:junct ",car.nextJunction.junctionNum,", distance to nextJunct: ",car.distanceToNextJunction," metres")
+    fmt.Println() //Println puts spaces between params, Print does not
   }
 }
 
@@ -41,13 +66,10 @@ type Road struct {
 }
 
 func update() {
-  fmt.Println(" ")
-  fmt.Println("print all cars:")
-  for _, value := range allCars {
-    fmt.Println(value)
+  for id, car := range allCars {
+    printCar(car, id)
   }
   
-  fmt.Println("update all cars:")
   for key, value := range allCars {
     updateCar(value, key)
   }
@@ -69,23 +91,13 @@ func main() {
   junct1.roadsOut[0] = &myroad
   myroad.nextJunction = &junct2
   
-  fmt.Println("Go says I have to print this or no compilation for you: ")
-  fmt.Println("junct1:", junct1)
-  fmt.Println("myroad:", &myroad, " which is ", myroad)
-  fmt.Println("junct2:", junct2)
-  
   allCars[0] = &Car{nil, &junct1, 0, 0, &junct2}
   
-  //fmt.Println("Car: ", allCars[0])
-
-  update()
-  update()
-  update()
-  update()
-  update()
-  update()
-  update()
-  update()
-  update()
-  
+  //in Go all loops are made with a for statement, while(x) {...} is written for x {...}
+  //brackets are not allowed around the for statement itself, strangely
+  for i := 0; i<8; i++ { 
+    update()
+    //sleep, just for a sense of "movement"
+    time.Sleep(1 * time.Second)
+  }
 }

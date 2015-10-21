@@ -23,6 +23,7 @@ func updateCar(car *Car, id int) {
       //Blank car's fields to show it cannot move anymore
       car.currentRoad = nil
       car.nextJunction = nil
+      car.speed = 0
     } else {
       //Car picks route here:
       car.currentRoad = car.nextJunction.roadsOut[0]
@@ -47,7 +48,8 @@ func printCar(car *Car, id int) {
     if car.currentRoad == nil { fmt.Print("none"); 
     } else { fmt.Print("id",car.currentRoad.neoId); } //else must have a } before it on the same line
     
-    fmt.Print(", nextJunct:junct ",car.nextJunction.junctionNum,", distance to nextJunct: ",car.distanceToNextJunction," metres")
+    fmt.Print(", nextJunct:junct ",car.nextJunction.junctionNum,", distance to nextJunct: ",
+      car.distanceToNextJunction," metres, speed: ", car.speed, " m/s")
     fmt.Println() //Println puts spaces between params, Print does not
   }
 }
@@ -66,36 +68,41 @@ type Road struct {
 }
 
 func update() {
-  for id, car := range allCars {
-    printCar(car, id)
-  }
   
   for key, value := range allCars {
     updateCar(value, key)
   }
   
-  fmt.Println(" ")
+  for id, car := range allCars {
+    printCar(car, id)
+  }
+
+  fmt.Println("")
 }
 
 func main() {
   fmt.Println("Hello!")
   //declare instances
   allCars = make(map[int]*Car)
-   
-  junct1 := Junction{27, 1, make(map[int]*Road) }
-  junct2 := Junction{28, 2, make(map[int]*Road) }
-  myroad := Road{23, 200,50, nil }
+  
+  //for objects(structs) always use pointer types for consistent syntax - so only use & for constructing and nowhere else
+  junct1 := &Junction{27, 1, make(map[int]*Road) }
+  junct2 := &Junction{28, 2, make(map[int]*Road) }
+  myroad := &Road{23, 100,20, nil }
   
   //connect roads and junctions
   // j1 --myroad-> j2
-  junct1.roadsOut[0] = &myroad
-  myroad.nextJunction = &junct2
+  junct1.roadsOut[0] = myroad
+  myroad.nextJunction = junct2
   
-  allCars[0] = &Car{nil, &junct1, 0, 0, &junct2}
+  allCars[0] = &Car{nil, junct1, 0, 0, junct2}
   
   //in Go all loops are made with a for statement, while(x) {...} is written for x {...}
   //brackets are not allowed around the for statement itself, strangely
-  for i := 0; i<8; i++ { 
+  fmt.Println("Car init: "); printCar(allCars[0], 0)
+  fmt.Println("")
+  time.Sleep(1 * time.Second)
+  for i := 0; i<10; i++ { 
     update()
     //sleep, just for a sense of "movement"
     time.Sleep(1 * time.Second)

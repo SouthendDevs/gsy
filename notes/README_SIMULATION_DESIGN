@@ -11,7 +11,7 @@ Car struct:
 Junction struct:
   neoId         (int)
   junctionNum   (int)
-  roadsOut      (a map - hashmap, with ints for keys and Road pointers for values. We just use it as a dynamic size array)
+  roadsOut      (a map - hashmap, ints for keys, Road pointers for values. We just use it as a dynamic size array)
 
 Road struct:
   neoId        (int)

@@ -85,7 +85,7 @@ func main() {
   //declare instances
   allCars = make(map[int]*Car)
   
-  //for objects(structs) always use pointer types for consistent syntax - so only use & for constructing and nowhere else
+  //for objects(structs) always use pointer types for consistent syntax - so only use & for constructing, nowhere else
   junct1 := &Junction{27, 1, make(map[int]*Road) }
   junct2 := &Junction{28, 2, make(map[int]*Road) }
   myroad := &Road{23, 100,20, nil }

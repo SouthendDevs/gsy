@@ -47,16 +47,21 @@ main function: (start execution here)
 Notes on Go code:
 
 ----Pointers:----
-Pointer types are denoted with *Type. Go always passes by value. If you have a list of roads and want to refer to one of them with another variable, something like
+Pointer types are denoted with *Type. Go always passes by value. If you have a list of roads and want to refer to one
+of them with another variable, something like
 
   var nextRoad Road
   nextRoad = roads[5]
 
-roads should be a list of Road pointers(recommended), so this would be a compiler error. If roads is a list of road objects, then it would work, but nextRoad will become a copy the road object - probably not what you wanted. In most modern languages, Ruby, Python, Java etc, object types are passed by reference(pointer) by default, so you get a pointer to the same actual instance just by using the = operator. In C, C++ and Go you must use pointer types and pointer syntax:
+roads should be a list of Road pointers(recommended), so this would be a compiler error (Road and *Road are 
+different types). If roads is a list of road objects, then it would work, but nextRoad will become a copy the road 
+object - probably not what you wanted. In most modern languages, Ruby, Python, Java etc, object types are passed by 
+reference(pointer) by default, so you get a pointer to the same actual instance just by using the = operator. 
+In C, C++ and Go you must use pointer types and pointer syntax:
 
-  //if roads is a list of Road pointers (recommended):
+  //if roads is a list of Road pointers (recommended for consistent syntax):
   var nextRoad *Road      //pointer type with the * in front
-  nextRoad = roads[5]     //roads should already be a list of Road pointers, so no need for & operator to get the address-of(pointer-to)
+  nextRoad = roads[5]     //a list of Road pointers, so no need for & operator to get the address-of(pointer-to)
   
   //if roads is a list of Road objects:
   var nextRoad *Road
@@ -65,16 +70,27 @@ roads should be a list of Road pointers(recommended), so this would be a compile
 You can also use type inference instead to avoid having to explicitly declaring the var and type:
 
   //if roads is a list of Road pointers (recommended)
-  nextRoad := roads[5]    //notice that all pointer syntax is hidden!
+  nextRoad := roads[5]    //notice that all pointer syntax is hidden
 
 Unlike in C/C++, you don't have to "dereference" a pointer to use what it points to. The . operator will do that:
 
-  fmt.Println(nextRoad.length) //works just fine
+  fmt.Println(nextRoad.length) //works just fine, like dynamic languages
   
-Also unlike C/C++, Go has a garbage collector that watches when objects get orphaned and deletes them, so you shouldn't have to worry about destroying (deallocating) stuff.
+Also unlike C/C++, Go has a garbage collector that watches when objects get orphaned and deletes them AFAIK, so you
+don't have to worry about destroying (deallocating) stuff.
 
 ----Other:----
-Go has structs, not classes. Structs are compound types (similar to classes) but without methods, for some reason. Should probably read up on how OOP is supposed to work in Go. But this seems to be the way to do it.
+Go has structs, not classes. Structs are compound types (similar to classes) but without methods, for some reason.
+Should probably read up on how OOP is supposed to work in Go. But this seems to be the way to do it.
 
-For lists, hashmaps seem an easy way to do this. Hashmaps are otherwise known as a dictionary(Python) or associative array(PHP arrays/etc).
-A map type is map[keytype]valuetype, so map[int]string if you are mapping ints to strings. In our case we have map[int]*Road. The * indicates a pointer type.
+For lists, hashmaps seem an easy way to do this. Hashmaps are otherwise known as a dictionary(Python) or associative
+array(PHP arrays/etc). 
+A map type is map[keytype]valuetype, so map[int]string if you are mapping ints to strings. In our case we have 
+map[int]*Road, which is a hashmap of integers mapped to Road pointers. To actually construct the (empty) hashmap, use
+make(map[keytype]valuetype). e.g.
+
+  strings = make(map[int]string)
+
+or
+
+  roads := make(map[int]*Road)

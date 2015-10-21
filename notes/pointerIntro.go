@@ -23,9 +23,11 @@ func demo1() {
 func demo2() {
   var x *User //use pointer types everywhere - recommended
   x = &User{"Andy"} //we construct a User then get a pointer to it (get the memory address-of x with &x)
-  //the = operator now copies the POINTER - x and y are now both pointers that point(refer) to the same object, like objects in Ruby/Java/Python etc by default
+  //the = operator now copies the POINTER - x and y are now both pointers that point(refer) to the same object, 
+  //like objects in Ruby/Java/Python etc by default
   y := x
-  //the pointer itself doesn't have a name field - Go automatically dereferences it to the object we want - we can always use .
+  //the pointer itself doesn't have a name field - Go automatically dereferences it to the object we want
+  // - we can always use .
   y.name = "Dan"
   fmt.Println("demo2:",x,y) //x and y both point to Dan
 }
@@ -91,3 +93,7 @@ func main() {
   demo4()
   demo5()
 }
+
+
+
+

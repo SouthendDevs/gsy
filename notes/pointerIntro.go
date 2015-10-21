@@ -1,4 +1,4 @@
-//run me with "$ go run pointer_introduction.go"
+//run me with "$ go run pointerIntro.go"
 
 package main
 

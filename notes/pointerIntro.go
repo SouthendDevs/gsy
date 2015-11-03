@@ -9,10 +9,13 @@ type User struct {
 }
 
 func demo1() {
+  //make a variable x of type User - initialised to nil to start with
   var x User
+  
+  //construct a User
   x = User{"Andy"}
   
-  //the = operator COPIES the object (:= is type inference - it declares y with the correct type automatically),
+  //the = operator copies the object itself (:= is type inference - it declares y with the correct type automatically),
   y := x
   //so we now have 2 User objects
   
@@ -21,8 +24,13 @@ func demo1() {
 }
 
 func demo2() {
-  var x *User //use pointer types everywhere - recommended
-  x = &User{"Andy"} //we construct a User then get a pointer to it (get the memory address-of x with &x)
+  //make a variable x of type *User - User pointer -  initialised to nil to start with
+  //use pointer types for all objects - recommended
+  var x *User
+  
+  //Construct a User then get a pointer to it (get the memory address-of x with &x)
+  x = &User{"Andy"}
+  
   //the = operator now copies the POINTER - x and y are now both pointers that point(refer) to the same object, 
   //like objects in Ruby/Java/Python etc by default
   y := x
@@ -54,8 +62,8 @@ func demo4func(user User) {
 
 func demo4() {
   fmt.Println("")
-  var x User
-  x = User{"Andy"}
+  //type inference: x is auto-initialised to a User (not *User)
+  x := User{"Andy"}
   fmt.Println("before demo4func(x):", x.name)
   //the User object is COPIED into the function
   demo4func(x)
@@ -76,8 +84,8 @@ func demo5func(user *User) {
 
 func demo5() {
   fmt.Println("")
-  var x *User //x now points to a User, it is not a User itself
-  x = &User{"Andy"} //we construct it and then get a pointer to it (get the memory address-of x with &x)
+  //type inference: (:=) x is auto-initialised to a *User (not User)
+  x := &User{"Andy"} //we construct it and then get a pointer to it (get the memory address-of x with &x)
   fmt.Println("before demo5func(x):", x.name)
   //the User POINTER is copied into the function - so the function can access the original object
   demo5func(x)

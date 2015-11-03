@@ -17,7 +17,7 @@ func TestCarCanDriveOntoARoad (t *testing.T) {
   //make a road
   myroad := newRoad()
   //put car onto road
-  driveCarOntoRoad(mycar, myroad)
+  myroad.driveCarOnto(mycar)
   
-  if positionOfCar(mycar) != 0 { t.Fatal("car not at start of road") }
+  if mycar.getPosition() != 0 { t.Fatal("car not at start of road") }
 }

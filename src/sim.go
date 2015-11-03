@@ -1,6 +1,6 @@
 package main
 
-import "container/list"
+import "container/list" //linked list
 
 type Car struct {
   position float32
@@ -22,11 +22,11 @@ func newRoad() *Road {
   return road
 }
 
-func driveCarOntoRoad(car *Car, road *Road) {
+func (road *Road) driveCarOnto(car *Car) {
   car.position = 0
   road.cars.PushBack(car)
 }
 
-func positionOfCar(car *Car) float32 {
+func (car *Car) getPosition() float32 {
   return car.position
 }

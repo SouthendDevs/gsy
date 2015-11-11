@@ -1,3 +1,7 @@
+This is out of date - this refers to the very first prototype Andy, Tony and Simon made, now called 
+first_simulation_one_car.gone in the src folder.
+-------------------------------------------------------------------------------------------------------------
+
 General design of the data structure: (we could make it into a UML diagram with UMLet if people want)
 
 Car struct:

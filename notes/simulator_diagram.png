@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/PR-SVG-20010719/DTD/svg10.dtd">
+<svg width="35cm" height="21cm" viewBox="36 66 691 414" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g>
+    <rect style="fill: #ffffff" x="74.6719" y="67.5778" width="144" height="91"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="74.6719" y="67.5778" width="144" height="91"/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="146.672" y="116.978">
+      <tspan x="146.672" y="116.978">neo4j DB</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="37.5658" y="391" width="170.284" height="78"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="37.5658" y="391" width="170.284" height="78"/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="122.708" y="433.9">
+      <tspan x="122.708" y="433.9">Scalatra web server</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="617.4" y="395" width="108.6" height="71"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="617.4" y="395" width="108.6" height="71"/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="671.7" y="434.4">
+      <tspan x="671.7" y="434.4">browser JS</tspan>
+    </text>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="207.85" y1="410.5" x2="607.664" y2="412.697"/>
+    <polygon style="fill: #000000" points="615.164,412.738 605.137,417.683 607.664,412.697 605.192,407.683 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="615.164,412.738 605.137,417.683 607.664,412.697 605.192,407.683 "/>
+  </g>
+  <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="412.625" y="392.575">
+    <tspan x="412.625" y="392.575">serve webpage</tspan>
+    <tspan x="412.625" y="408.575"></tspan>
+  </text>
+  <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="553" y="474">
+    <tspan x="553" y="474"></tspan>
+  </text>
+  <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="552" y="457">
+    <tspan x="552" y="457"></tspan>
+  </text>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="617.4" y1="448.25" x2="217.586" y2="449.47"/>
+    <polygon style="fill: #000000" points="210.086,449.493 220.071,444.463 217.586,449.47 220.101,454.463 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="210.086,449.493 220.071,444.463 217.586,449.47 220.101,454.463 "/>
+  </g>
+  <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="412.625" y="460.775">
+    <tspan x="412.625" y="460.775"></tspan>
+    <tspan x="412.625" y="476.775">AJAX(?) config commands</tspan>
+  </text>
+  <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="408" y="163">
+    <tspan x="408" y="163"></tspan>
+  </text>
+  <g>
+    <rect style="fill: #ffffff" x="297" y="211" width="171" height="87"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="297" y="211" width="171" height="87"/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="382.5" y="258.4">
+      <tspan x="382.5" y="258.4">Go</tspan>
+    </text>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="226.763" y1="163.993" x2="288.909" y2="205.585"/>
+    <polygon style="fill: #000000" points="220.53,159.822 231.622,161.228 226.763,163.993 226.06,169.539 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="220.53,159.822 231.622,161.228 226.763,163.993 226.06,169.539 "/>
+    <polygon style="fill: #000000" points="295.142,209.756 284.05,208.35 288.909,205.585 289.612,200.039 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="295.142,209.756 284.05,208.35 288.909,205.585 289.612,200.039 "/>
+  </g>
+  <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="257.836" y="184.789">
+    <tspan x="257.836" y="184.789">     neoism Go library</tspan>
+  </text>
+  <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="240" y="163">
+    <tspan x="240" y="163"></tspan>
+  </text>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="207.85" y1="391" x2="290.263" y2="305.028"/>
+    <polygon style="fill: #000000" points="295.453,299.614 292.142,310.293 290.263,305.028 284.923,303.373 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="295.453,299.614 292.142,310.293 290.263,305.028 284.923,303.373 "/>
+  </g>
+  <text font-size="12.7998" style="fill: #000000;text-anchor:end;font-family:sans-serif;font-style:normal;font-weight:normal" x="252.425" y="344.5">
+    <tspan x="252.425" y="344.5">sockets? TLS?    </tspan>
+  </text>
+  <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="245" y="355">
+    <tspan x="245" y="355"></tspan>
+  </text>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="468" y1="298" x2="609.234" y2="389.698"/>
+    <polygon style="fill: #000000" points="615.525,393.782 604.415,392.53 609.234,389.698 609.86,384.143 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="615.525,393.782 604.415,392.53 609.234,389.698 609.86,384.143 "/>
+  </g>
+  <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="542.7" y="346.5">
+    <tspan x="542.7" y="346.5">    pusher - push updates</tspan>
+  </text>
+  <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="497" y="100">
+    <tspan x="497" y="100"></tspan>
+  </text>
+  <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="122.708" y="430">
+    <tspan x="122.708" y="430"></tspan>
+  </text>
+</svg>

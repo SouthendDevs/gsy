@@ -29,18 +29,12 @@
       console.log("Direction:" + data.direction);
       console.log("Postion:" + data.position);
       var chrId = document.getElementById('car_1');
-      switch(data.direction) {
-        case "1": // Move Up from start position (500x,200y)
-          chrId.style.top = (200 - (data.position * 2)) + "px";
+      switch(data.axis) {
+        case "x": // Move Up from start position (500x,200y)
+          chrId.style.left = data.pos + "px";
           break;
-        case "2": // Move Right from start position (500x,200y)
-          chrId.style.left = (data.position * 2) + "px";
-          break;
-        case "3": // Move Down from start position (500x,200y)
-          chrId.style.top = (data.position * 2) + "px";
-          break;
-        case "4": // Move Left from start position (500x,200y)
-          chrId.style.left = (500 - (data.position * 2)) + "px";
+        case "y": // Move Right from start position (500x,200y)
+          chrId.style.top  = data.pos + "px";
           break;
       }
     });

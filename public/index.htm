@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <head>
   <style>
-    #car_1 {
-      border: 1px solid black;
-      width: 100px;
-      height: 100px;
-      position: absolute;
-      left: 500px;
-      top: 200px;
-    }
+  body {
+    font-family:Sans-serif, "Arial", "Verdana"
+    text-align:center
+  }
+  #pagediv {
+    text-align:center
+  }
   </style>
 
   <script src="https://js.pusher.com/3.0/pusher.min.js"></script>
@@ -26,24 +25,73 @@
     });
     var channel = pusher.subscribe('test_channel');
     channel.bind('my_event', function(data) {
-      console.log("Direction:" + data.direction);
-      console.log("Postion:" + data.position);
-      var chrId = document.getElementById('car_1');
-      switch(data.axis) {
-        case "x": // Move Up from start position (500x,200y)
-          chrId.style.left = data.pos + "px";
-          break;
-        case "y": // Move Right from start position (500x,200y)
-          chrId.style.top  = data.pos + "px";
-          break;
-      }
+      handleData(data)
+      
+      //for(var key in data) {
+      //  //console.log("Data print keyval: data["+ key +"] = "+ data[key])
+      //  value = data[key]
+      //  valueSplit = value.split(",")
+      //  if( key.startsWith("veh") ) {
+      //    vehId = key.substring(3)
+      //    vehX = valueSplit[0]
+      //    vehY = valueSplit[1]
+      //    vehOri = valueSplit[2]
+      //    vehCol = valueSplit[3]
+      //    console.log("Vehicle " + vehId + ": xy pos: " + vehX + "," + vehY + ", orientation: " 
+      //                + (vehOri == "e" | vehOri == "w" ? "horizontal" : "vertical") + ", colour #" + vehCol)
+      //  }
+      //}
     });
+    
+    function handleData(data) {
+      var context = clearCanvasGetContext()
+    
+      for(var key in data) {
+        //console.log("Data print keyval: data["+ key +"] = "+ data[key])
+        value = data[key]
+        valueSplit = value.split(",")
+        if( key.startsWith("veh") ) {
+          vehId = key.substring(3)
+          vehX = parseInt(valueSplit[0])
+          vehY = parseInt(valueSplit[1])
+          vehDirection = valueSplit[2]
+          vehColour = "#"+valueSplit[3]
+          
+          if(vehDirection == "e" | vehDirection == "w") drawRect(vehX, vehY, 50, 20, vehColour, context)
+          if(vehDirection == "n" | vehDirection == "s") drawRect(vehX, vehY, 20, 50, vehColour, context)
+        //  console.log("asdVehicle " + vehId + ": xy pos: " + vehX + "," + vehY + ", orientation: " 
+        //              + (vehOri == "e" | vehOri == "w" ? "horizontal" : "vertical") + ", colour #" + vehCol)
+        }
+      }
+    }
+    
+    //
+    //
+    // HTML5 Canvas crap below
+    //
+    //
+    
+    function clearCanvasGetContext() {
+      var canvas = document.getElementById("myCanvas");
+      var context = canvas.getContext("2d");
+      context.clearRect(0,0,canvas.width,canvas.height)
+      return context
+    }
+    
+    function drawRect(x,y,w,h,col, context) {
+      context.fillStyle = col
+      context.fillRect(x,y,w,h)
+    }
   </script>
 
   <script>
   </script>
 </head>
-<body>
-<div id="car_1"></div>
-</body>
+<body><div id="pagediv">
+<h1>Go Simulate Yourself(development)</h1>
+Run push.go then watch canvas below:<br>
+<canvas id="myCanvas" width="600" height="400" style="border:1px solid #c3c3c3;">
+Your browser does not support the HTML5 canvas tag.
+</canvas>
+</div></body>
 </html>
